@@ -4,6 +4,10 @@ void drawButtons() {
   Fill.Draw();
   Grid.Draw();
   drawColorButtons();
+  drawcolorPalette();
+  drawCustomButtons();
+  Settings.Draw();
+  Save.Draw();
   if(grid[1].Stroke) Grid.Text = "Grid ON";
   else               Grid.Text = "Grid OFF"; 
   if(newsize)  drawNew();
@@ -54,3 +58,57 @@ void drawKeyPad() {
 }
 
 //---------------------------------------------------------------------------------------------------------------------------------------
+
+void drawColorButtons() {
+  Color.Draw();
+  Color.Color(red,green,blue);
+  
+  if(red < 1)  red = 0;
+  if(blue <1)  blue= 0;
+  if(green<1)  green=0;
+  if(red > 254)  red = 255;
+  if(blue >254)  blue =255;
+  if(green>254)  green=255;
+  
+  Redup.Draw();
+  Red.Draw();
+  Red.no = red;
+  Reddo.Draw();
+  Greenup.Draw();
+  Green.Draw();
+  Green.no = green;
+  Greendo.Draw();
+  Blueup.Draw();
+  Blue.Draw();
+  Blue.no =blue;
+  Bluedo.Draw();
+  
+  if(Redup.mousePressed()) red++;
+  if(Reddo.mousePressed()) red--;  
+  if(Greenup.mousePressed()) green++;
+  if(Greendo.mousePressed()) green--;  
+  if(Blueup.mousePressed()) blue++;
+  if(Bluedo.mousePressed()) blue--;
+}
+
+void drawcolorPalette() {
+  Black.Draw();
+  White.Draw();
+  RedB.Draw();
+  GreenB.Draw();
+  BlueB.Draw();
+}
+
+
+void drawCustomButtons() {
+  Custom1.Draw();
+  Custom2.Draw();
+  Custom3.Draw();
+  Custom4.Draw();
+  Custom5.Draw();
+  Custom6.Draw();
+  Custom7.Draw();
+  Custom8.Draw();
+  Custom9.Draw();
+  Custom0.Draw();
+}

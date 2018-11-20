@@ -13,7 +13,7 @@ class Grid {
   }
 
   boolean mouseOver() {
-    if (mouseX > x && mouseX < x+s && mouseY >y && mouseY <y+s)  return true;
+    if (mouseX >= x && mouseX <= x+s && mouseY >=y && mouseY <=y+s)  return true;
     else return false;
   }
 
