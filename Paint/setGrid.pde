@@ -1,7 +1,7 @@
 Grid grid[];
 
 void InitializeGrid() {
-  s=(height-10)/size;
+  s=float(height-20)/size;
   x=width-height+10;
   y=10;
   grid = new Grid[size*size+1];
