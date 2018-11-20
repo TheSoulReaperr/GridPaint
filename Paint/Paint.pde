@@ -1,28 +1,30 @@
-Button no1;
-Button no2;
-Button no3;
-Button no4;
-Button no5;
-Button no6;
-Button no7;
-Button no8;
-Button no9;
-Button no0;
-Button nocheck;
-Button noclear;
+Button Color;
+Button Redup;
+Button Reddo;
+Button Greenup;
+Button Greendo;
+Button Blueup;
+Button Bluedo;
+Button Red;
+Button Green;
+Button Blue;
 
-boolean newsize = true;
-boolean keyPad = true;
+boolean newsize = false;
+boolean keyPad = false;
+boolean error = false;
+PFont Font;
 float x;
 float y;
 float s;
 int size = 16;
 int red = 0;
-int green = 0;
-int blue = 0;
+int green = 150;
+int blue = 255;
 
 void setup() {
   fullScreen();
+  Font =  createFont("OCR A Std",100);
+  textFont(Font);
   InitializeGrid();
   InitButtons();
 }
@@ -32,86 +34,88 @@ void draw() {
   drawGrid();
   drawStuffs();
   drawButtons();
+  drawTexts();
 }
 
-void InitKeyPad() {
-  no1 = new Button(width/1.3, height/2, width*height/16408, width*height/16408);
-  no1.Ellipse(true);
-  no1.Color(255, 255, 255);
-  no1.Text("1",0,0,0,35);
-
-  no2 = new Button(width/1.1875, height/2, width*height/16408, width*height/16408);
-  no2.Ellipse(true);
-  no2.Color(255, 255, 255);
-  no2.Text("2",0,0,0,35);
-
-  no3 = new Button(width/1.0925, height/2, width*height/16408, width*height/16408);
-  no3.Ellipse(true);
-  no3.Color(255, 255, 255);
-  no3.Text("3",0,0,0,35);
-
-  no4 = new Button(width/1.3, height/1.6, width*height/16408, width*height/16408);
-  no4.Ellipse(true);
-  no4.Color(255, 255, 255);
-  no4.Text("4",0,0,0,35);
+void InitColorButtons() {
+  Color = new Button(width/3.36,height/7.31,width/8.0,height/4.0);
+  Color.Stroke(255,255,255,1);
+  Color.Color(red,green,blue);
   
-  no5 = new Button(width/1.1875, height/1.6, width*height/16408, width*height/16408);
-  no5.Ellipse(true);
-  no5.Color(255, 255, 255);
-  no5.Text("5",0,0,0,35);
+  Reddo = new Button(width/54.4,height/7.31,width/15.0,height/15.0);
+  Reddo.Color(255,80,100);
+  Reddo.Stroke(255,80,100,1);
+  Reddo.Text("<",255,255,255,40);
   
-  no6 = new Button(width/1.0925, height/1.6, width*height/16408, width*height/16408);
-  no6.Ellipse(true);
-  no6.Color(255, 255, 255);
-  no6.Text("6",0,0,0,35);
-
-  no7 = new Button(width/1.3, height/1.35, width*height/16408, width*height/16408);
-  no7.Ellipse(true);
-  no7.Color(255, 255, 255);
-  no7.Text("7",0,0,0,35);
+  Red = new Button(width/11,height/7.31,width/8,height/15.0);
+  Red.Color(255,255,255);
+  Red.Stroke(200,200,200,1);
+  Red.Num(red,255,80,100,30);
   
-  no8 = new Button(width/1.1875, height/1.35, width*height/16408, width*height/16408);
-  no8.Ellipse(true);
-  no8.Color(255, 255, 255);
-  no8.Text("8",0,0,0,35);
+  Redup = new Button(width/3.46-width/15.0,height/7.31,width/15.0,height/15.0);
+  Redup.Color(255,80,100);
+  Redup.Stroke(255,80,100,1);
+  Redup.Text(">",255,255,255,40);
   
-  no9 = new Button(width/1.0925, height/1.35, width*height/16408, width*height/16408);
-  no9.Ellipse(true);
-  no9.Color(255, 255, 255);
-  no9.Text("9",0,0,0,35);
-
-  no0 = new Button(width/1.1875, height/1.17, width*height/16408, width*height/16408);
-  no0.Ellipse(true);
-  no0.Color(255, 255, 255);
-  no0.Text("0",0,0,0,35);
+  Greendo = new Button(width/54.4,height/4.57,width/15.0,height/15.0);
+  Greendo.Color(80,255,100);
+  Greendo.Stroke(80,255,100,1);
+  Greendo.Text("<",255,255,255,40);
   
-  nocheck = new Button(width/1.3, height/1.17, width*height/16408, width*height/16408);
-  nocheck.Ellipse(true);
-  nocheck.Color(100,255,150);
-  nocheck.Text("√",0,0,0,35);
+  Green = new Button(width/11,height/4.57,width/8,height/15.0);
+  Green.Color(255,255,255);
+  Green.Stroke(200,200,200,1);
+  Green.Num(green,80,255,100,30);
   
-  noclear = new Button(width/1.0925, height/1.17, width*height/16408, width*height/16408);
-  noclear.Ellipse(true);
-  noclear.Color(255,150,100);
-  noclear.Text("◄",0,0,0,35);
+  Greenup = new Button(width/3.46-width/15.0,height/4.57,width/15.0,height/15.0);
+  Greenup.Color(80,255,100);
+  Greenup.Stroke(80,255,100,1);
+  Greenup.Text(">",255,255,255,40);
+  
+  Bluedo = new Button(width/54.4,height/3.3,width/15.0,height/15.0);
+  Bluedo.Color(80,100,255);
+  Bluedo.Stroke(80,100,255,1);
+  Bluedo.Text("<",255,255,255,40);
+  
+  Blue = new Button(width/11,height/3.3,width/8,height/15.0);
+  Blue.Color(255,255,255);
+  Blue.Stroke(200,200,200,1);
+  Blue.Num(blue,80,100,255,30);
+  
+  Blueup = new Button(width/3.46-width/15.0,height/3.3,width/15.0,height/15.0);
+  Blueup.Color(80,100,255);
+  Blueup.Stroke(80,100,255,1);
+  Blueup.Text(">",255,255,255,40);
 }
 
-void drawKeyPad() {
-  fill(0);
-  stroke(255);
-  strokeWeight(3);
-  rectMode(CORNER);
-  rect(width/1.34, height/2.15, width/4.1, height/1.94);
-  no1.Draw();
-  no2.Draw();
-  no3.Draw();
-  no4.Draw();
-  no5.Draw();
-  no6.Draw();
-  no7.Draw();
-  no8.Draw();
-  no9.Draw();
-  no0.Draw();
-  nocheck.Draw();
-  noclear.Draw();
+void drawColorButtons() {
+  Color.Draw();
+  Color.Color(red,green,blue);
+  
+  if(red < 1)  red = 0;
+  if(blue <1)  blue= 0;
+  if(green<1)  green=0;
+  if(red > 254)  red = 255;
+  if(blue >254)  blue =255;
+  if(green>254)  green=255;
+  
+  Redup.Draw();
+  Red.Draw();
+  Red.no = red;
+  Reddo.Draw();
+  Greenup.Draw();
+  Green.Draw();
+  Green.no = green;
+  Greendo.Draw();
+  Blueup.Draw();
+  Blue.Draw();
+  Blue.no =blue;
+  Bluedo.Draw();
+  
+  if(Redup.mousePressed()) red++;
+  if(Reddo.mousePressed()) red--;  
+  if(Greenup.mousePressed()) green++;
+  if(Greendo.mousePressed()) green--;  
+  if(Blueup.mousePressed()) blue++;
+  if(Bluedo.mousePressed()) blue--;
 }

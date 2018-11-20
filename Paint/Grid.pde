@@ -5,29 +5,29 @@ class Grid {
   float x;
   float y;
   float s;
-  
+
   Grid(float _x, float _y, float _s) {
     x = _x;
     y = _y;
     s = _s;
   }
-  
+
   boolean mouseOver() {
-    if(mouseX > x && mouseX < x+s && mouseY >y && mouseY <y+s)  return true;
+    if (mouseX > x && mouseX < x+s && mouseY >y && mouseY <y+s)  return true;
     else return false;
   }
-  
+
   boolean mousePressed() {
-    if(mouseOver() && mousePressed) return true;
+    if (mouseOver() && mousePressed) return true;
     else return false;
   }
-  
+
   void Draw() {
-    if(mousePressed() && !newsize) c = color(red,green,blue);
+    if (mousePressed() && !newsize && !keyPad) c = color(red, green, blue);
     fill(c);
     strokeWeight(1);
-    if(Stroke) stroke(0);
+    if (Stroke) stroke(0);
     else stroke(c);
-    rect(x,y,s,s);
+    rect(x, y, s, s);
   }
 }

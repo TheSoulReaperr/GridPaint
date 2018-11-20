@@ -95,7 +95,7 @@ class Button {
     fill(tr,tg,tb);
     textSize(tSize);
     textAlign(CENTER,CENTER);
-    if(Number)  text(no,x+w/2,y+h/2-h/10);
-    else  text(Text,x+w/2-w/120,y+h/2-h/8);
+    if(Number)  text(no,x+w/2,y+h/2);
+    else  text(Text,x+w/2,y+h/2);
   }
 }
