@@ -23,7 +23,7 @@ class Grid {
   }
   
   void Draw() {
-    if(mousePressed()) c = color(red,green,blue);
+    if(mousePressed() && !newsize) c = color(red,green,blue);
     fill(c);
     strokeWeight(1);
     if(Stroke) stroke(0);
